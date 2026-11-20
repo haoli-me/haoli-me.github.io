@@ -1,0 +1,94 @@
+:root {
+  --bg: #fbfaf8;
+  --fg: #1d1d1b;
+  --muted: #706d66;
+  --line: #e7e4de;
+  --accent: #1d1d1b;
+  --code-bg: #f1efea;
+  --font: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --fg: #e9e7e2;
+    --muted: #9a968d;
+    --line: #2b2a28;
+    --accent: #e9e7e2;
+    --code-bg: #22211f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.75 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+header.site {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2.5rem 0 3rem;
+}
+
+header.site a.name {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+header.site nav { display: flex; gap: 1.25rem; }
+
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 0.2em; }
+a:hover { text-decoration-color: currentColor; }
+header.site a, .post-list a { text-decoration: none; }
+header.site nav a { color: var(--muted); }
+header.site nav a:hover, header.site nav a[aria-current='page'] { color: var(--fg); }
+
+main { min-height: 55vh; }
+
+h1 { font-size: 1.6rem; line-height: 1.3; letter-spacing: -0.015em; margin: 0 0 0.5rem; }
+h2 { font-size: 1.25rem; line-height: 1.4; margin: 2.5rem 0 0.5rem; }
+h3 { font-size: 1.05rem; margin: 2rem 0 0.25rem; }
+
+.meta { color: var(--muted); font-size: 0.875rem; }
+
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-list li { padding: 0.9rem 0; }
+.post-list a { display: block; }
+.post-list .title { font-weight: 500; }
+.post-list .desc { color: var(--muted); font-size: 0.95rem; }
+.post-list time { color: var(--muted); font-size: 0.85rem; }
+
+.prose p, .prose ul, .prose ol, .prose blockquote, .prose pre { margin: 1.1rem 0; }
+.prose img { max-width: 100%; height: auto; border-radius: 4px; }
+.prose blockquote { margin-left: 0; padding-left: 1rem; border-left: 2px solid var(--line); color: var(--muted); }
+.prose code { font: 0.88em var(--mono); background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; line-height: 1.55; }
+.prose pre code { background: none; padding: 0; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+footer.site {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding: 4rem 0 3rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+footer.site a { text-decoration: none; }
+footer.site a:hover { color: var(--fg); }

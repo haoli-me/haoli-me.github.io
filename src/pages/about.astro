@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+
+<Base title="About" description="About Hao Li 李昊.">
+  <h1>About</h1>
+  <div class="prose">
+    <p>
+      Hi, I'm Hao Li 李昊. <!-- TODO: replace with a short bio: what you do, what you write about. -->
+      This is a placeholder bio. Edit <code>src/pages/about.astro</code>.
+    </p>
+    <p>
+      You can find me on
+      {
+        SITE.links.map((l, i) => (
+          <>
+            <a href={l.href} rel="me noopener">{l.label}</a>
+            {i < SITE.links.length - 2 ? ', ' : i === SITE.links.length - 2 ? ' and ' : '.'}
+          </>
+        ))
+      }
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+---
+
+<Base>
+  {posts.length === 0 && <p class="meta">Nothing here yet.</p>}
+  <ul class="post-list">
+    {
+      posts.map((p) => (
+        <li lang={p.data.lang}>
+          <a href={`/writing/${p.id}/`}>
+            <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+            <div class="title">{p.data.title}</div>
+            {p.data.description && <div class="desc">{p.data.description}</div>}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
