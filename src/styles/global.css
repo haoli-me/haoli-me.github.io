@@ -95,7 +95,18 @@ footer.site a:hover { color: var(--fg); }
 
 .prose li img { display: block; margin: 0.75rem 0 0.25rem; }
 
-/* Route maps: exactly the width of the text column, aligned with its left edge
-   (list items are indented 2.5rem per nesting level, so the image pulls back by that much). */
-.prose li img { display: block; width: calc(100% + 2.5rem); max-width: none; margin: 0.75rem 0 0.25rem -2.5rem; }
-.prose li li img { width: calc(100% + 5rem); margin-left: -5rem; }
+/* ---- Lists + route maps ---------------------------------------------------
+   --indent is the per-level list indent; it shrinks on phones so nested bullets keep a readable line length.
+   Each map link pulls back by the indent so every map is exactly as wide as the text column. */
+:root { --indent: 2.5rem; }
+@media (max-width: 599px) { :root { --indent: 1.25rem; } }
+.prose ul, .prose ol { padding-left: var(--indent); }
+
+.prose li a:has(> img) { display: block; width: calc(100% + var(--indent)); margin: 0.75rem 0 0.25rem calc(-1 * var(--indent)); text-decoration: none; }
+.prose li li a:has(> img) { width: calc(100% + 2 * var(--indent)); margin-left: calc(-2 * var(--indent)); }
+.prose li a:has(> img) img { display: block; width: 100%; max-width: none; margin: 0; aspect-ratio: 1800 / 1296; background: var(--code-bg); }
+.prose li a:has(> img)::after { content: 'Tap or click to enlarge'; display: block; margin-top: 0.3rem; font-size: 0.75rem; color: var(--muted); }
+
+/* ---- Touch targets (≥ 44px tall) ------------------------------------------ */
+header.site nav a { padding: 0.75rem 0.2rem; margin: -0.75rem 0; }
+footer.site a { padding: 0.7rem 0; margin: -0.7rem 0; }

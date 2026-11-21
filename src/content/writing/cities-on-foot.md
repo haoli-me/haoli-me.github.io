@@ -16,23 +16,23 @@ That sensory immersion creates room for serendipity that you just can’t plan o
 - Tokyo:
 	- On [a run starting out from Ikebukuro](https://www.strava.com/activities/9084302340), I picked a random direction and stumbled into Mejiro. In stark contrast to Ikebukuro’s bustle, Mejiro was almost entirely residential—quiet, tidy, and full of lived-in, everyday charm.
 
-      [![Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked](/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg)](/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg)
+      <a href="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg"><img src="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg" alt="Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 	- On [December 15, 2023—an absurdly warm winter night in Tokyo](https://x.com/extremetemps/status/1735828300633903154?s=20)—I went for a night run along the Yamanote Line. It was 20°C out (when typical December highs and lows are around 12°C and 7°C), so I found myself running in summer-like air surrounded by glowing Christmas lights and holiday music.
 	- Another time, I ran through Ginza early in the morning wearing a tank top while everyone around me was dressed in sharp suits heading to work. Even though I’d visited Ginza plenty of times and thought I knew its vibe well, feeling so out of place in running gear during the morning commute gave me a much sharper sense of the neighborhood's daily rhythm.
 - Hawaii: [This run](https://www.strava.com/activities/14583822282) made me realize just how close Diamond Head actually is to Waikiki (less than 5 km round-trip to the base of the crater). Along the way, I passed small oceanfront parks filled with morning yoga groups and found a narrow seaside path connecting Makalei and Leahi Beach Parks.
 
-  [![Route map of a 4.63 km morning run in Honolulu from Waikiki toward Diamond Head, passing Mākālei and Lēʻahi Beach Parks (马卡雷、莱阿希海滩公园)](/images/cities-on-foot/hawaii-diamond-head.jpg)](/images/cities-on-foot/hawaii-diamond-head.jpg)
+  <a href="/images/cities-on-foot/hawaii-diamond-head.jpg"><img src="/images/cities-on-foot/hawaii-diamond-head.jpg" alt="Route map of a 4.63 km morning run in Honolulu from Waikiki toward Diamond Head, passing Mākālei and Lēʻahi Beach Parks (马卡雷、莱阿希海滩公园)" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 - Seoul: [Looping around Yeouido on foot](https://www.strava.com/activities/19732140447) showed me how seamlessly Seoul pairs its well-built Han River running and cycling paths with Yeouido Park—a small Central Park-like green space embedded in the CBD.
 
-  [![Route map of a 5.24 km loop around Yeouido, Seoul, beside the Han River and Yeouido Park](/images/cities-on-foot/seoul-yeouido.jpg)](/images/cities-on-foot/seoul-yeouido.jpg)
+  <a href="/images/cities-on-foot/seoul-yeouido.jpg"><img src="/images/cities-on-foot/seoul-yeouido.jpg" alt="Route map of a 5.24 km loop around Yeouido, Seoul, beside the Han River and Yeouido Park" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 - Hangzhou: Nine years after graduating from ZJU, I revisited this beautiful city and wandered around West Lake with my family. Walking a big loop on the lake’s west side—[north along Yanggong Causeway](https://www.strava.com/activities/16953327661) and [back via Su Causeway](https://www.strava.com/activities/16953327374)—showed me the sharp contrast between quiet and lively.
 
-  [![Route map of a 7.93 km walk north along Yanggong Causeway on the west side of West Lake, Hangzhou](/images/cities-on-foot/hangzhou-yanggong-causeway.jpg)](/images/cities-on-foot/hangzhou-yanggong-causeway.jpg)
+  <a href="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg" alt="Route map of a 7.93 km walk north along Yanggong Causeway on the west side of West Lake, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-  [![Route map of a 3.94 km walk back south across West Lake via Su Causeway, Hangzhou](/images/cities-on-foot/hangzhou-su-causeway.jpg)](/images/cities-on-foot/hangzhou-su-causeway.jpg)
+  <a href="/images/cities-on-foot/hangzhou-su-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-su-causeway.jpg" alt="Route map of a 3.94 km walk back south across West Lake via Su Causeway, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 ## Earning Your Appetite
 Part of the joy of visiting any city is eating your way through it. When you only have a short window to explore, you naturally want to sample as much as you can—which usually means eating far more than you would at home. Getting out on foot beforehand doesn’t just connect you to the city—it creates a welcome calorie deficit, so you sit down at the table hungry and ready to enjoy every bite.
