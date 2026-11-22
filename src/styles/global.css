@@ -93,6 +93,11 @@ footer.site {
 footer.site a { text-decoration: none; }
 footer.site a:hover { color: var(--fg); }
 
+/* ---- Location pin ---------------------------------------------------------- */
+.loc { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted); font-size: 0.875rem; }
+.loc .pin { flex: none; }
+footer.site .loc { margin-right: 0.25rem; }
+
 /* ---- Route maps -------------------------------------------------------------
    Maps are flat, full text-column width; tap/click opens the full-size image. */
 .prose a:has(> img) { display: block; text-decoration: none; margin: 0.75rem 0 1.25rem; }
