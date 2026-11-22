@@ -12,13 +12,13 @@ Modern cities are dense, which means the neighborhoods and landmarks you actuall
 
 It’s always fun seeing how many different vibes I can pass through in a single 10K:
 
-- Tokyo: [This 10K route](https://www.strava.com/activities/10330760758) weaves from chic, boutique Ebisu into young, bustling Shibuya and elegant Omotesando, past Meiji Jingu Gaien carpeted in yellow ginkgo leaves, and down through understated, restrained Minami-Aoyama into quiet, international Hiroo.
+In Tokyo, [this 10K route](https://www.strava.com/activities/10330760758) weaves from chic, boutique Ebisu into young, bustling Shibuya and elegant Omotesando, past Meiji Jingu Gaien carpeted in yellow ginkgo leaves, and down through understated, restrained Minami-Aoyama into quiet, international Hiroo.
 
-  <a href="/images/cities-on-foot/tokyo-ebisu-hiroo.jpg"><img src="/images/cities-on-foot/tokyo-ebisu-hiroo.jpg" alt="Route map of a 9.99 km run in Tokyo from Ebisu through Shibuya, Omotesando, Meiji Jingu Gaien and Minami-Aoyama to Hiroo" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/tokyo-ebisu-hiroo.jpg"><img src="/images/cities-on-foot/tokyo-ebisu-hiroo.jpg" alt="Route map of a 9.99 km run in Tokyo from Ebisu through Shibuya, Omotesando, Meiji Jingu Gaien and Minami-Aoyama to Hiroo" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-- Guangzhou: Back in my hometown, [this 10K run along the Pearl River](https://www.strava.com/activities/10261533940) starts in earthy, lived-in Yuancun, passes newly minted boomtown Liede, cuts straight across the glass-and-steel CBD of Zhujiang New Town, and turns around on quiet, exclusive Ersha Island.
+Back in my hometown of Guangzhou, [this 10K run along the Pearl River](https://www.strava.com/activities/10261533940) starts in earthy, lived-in Yuancun, passes newly minted boomtown Liede, cuts straight across the glass-and-steel CBD of Zhujiang New Town, and turns around on quiet, exclusive Ersha Island.
 
-  <a href="/images/cities-on-foot/guangzhou-pearl-river.jpg"><img src="/images/cities-on-foot/guangzhou-pearl-river.jpg" alt="Route map of a 10.04 km run along the Pearl River in Guangzhou from Yuancun past Liede and Zhujiang New Town to a turnaround at Ersha Island" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/guangzhou-pearl-river.jpg"><img src="/images/cities-on-foot/guangzhou-pearl-river.jpg" alt="Route map of a 10.04 km run along the Pearl River in Guangzhou from Yuancun past Liede and Zhujiang New Town to a turnaround at Ersha Island" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 ## Unmatched "Information Bandwidth"
 
@@ -26,29 +26,27 @@ When you take a subway, bus, or taxi, you’re traveling inside a sealed box—m
 
 That sensory immersion creates room for serendipity that you just can’t plan on an itinerary. A few moments I only caught because I was out running/walking:
 
-- Tokyo:
-	- On [a run starting out from Ikebukuro](https://www.strava.com/activities/9084302340), I picked a random direction and stumbled into Mejiro. In stark contrast to Ikebukuro’s bustle, Mejiro was almost entirely residential—quiet, tidy, and full of lived-in, everyday charm.
+In Tokyo, on [a run starting out from Ikebukuro](https://www.strava.com/activities/9084302340), I picked a random direction and stumbled into Mejiro. In stark contrast to Ikebukuro’s bustle, Mejiro was almost entirely residential—quiet, tidy, and full of lived-in, everyday charm.
 
-      <a href="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg"><img src="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg" alt="Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg"><img src="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg" alt="Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-	- On [December 15, 2023—an absurdly warm winter night in Tokyo](https://x.com/extremetemps/status/1735828300633903154?s=20)—I went for [a night run along the Yamanote Line](https://www.strava.com/activities/10384090145). It was 20°C out (when typical December highs and lows are around 12°C and 7°C), so I found myself running in summer-like air surrounded by glowing Christmas lights and holiday music.
+Another time in Tokyo, on [December 15, 2023—an absurdly warm winter night](https://x.com/extremetemps/status/1735828300633903154?s=20)—I went for [a night run along the Yamanote Line](https://www.strava.com/activities/10384090145). It was 20°C out (when typical December highs and lows are around 12°C and 7°C), so I found myself running in summer-like air surrounded by glowing Christmas lights and holiday music.
 
-      <a href="/images/cities-on-foot/tokyo-yamanote-night.jpg"><img src="/images/cities-on-foot/tokyo-yamanote-night.jpg" alt="Route map of a 6.01 km night run in Tokyo from Ebisu north along the Yamanote Line toward Shibuya and back" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/tokyo-yamanote-night.jpg"><img src="/images/cities-on-foot/tokyo-yamanote-night.jpg" alt="Route map of a 6.01 km night run in Tokyo from Ebisu north along the Yamanote Line toward Shibuya and back" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-	- Another time, I ran through Ginza early in the morning wearing a tank top while everyone around me was dressed in sharp suits heading to work. Even though I’d visited Ginza plenty of times and thought I knew its vibe well, feeling so out of place in running gear during the morning commute gave me a much sharper sense of the neighborhood's daily rhythm.
-- Hawaii: [This run](https://www.strava.com/activities/14583822282) made me realize just how close Diamond Head actually is to Waikiki (less than 5 km round-trip to the base of the crater). Along the way, I passed small oceanfront parks filled with morning yoga groups and found a narrow seaside path connecting Makalei and Leahi Beach Parks.
+In Hawaii, [this run](https://www.strava.com/activities/14583822282) made me realize just how close Diamond Head actually is to Waikiki (less than 5 km round-trip to the base of the crater). Along the way, I passed small oceanfront parks filled with morning yoga groups and found a narrow seaside path connecting Makalei and Leahi Beach Parks.
 
-  <a href="/images/cities-on-foot/hawaii-diamond-head.jpg"><img src="/images/cities-on-foot/hawaii-diamond-head.jpg" alt="Route map of a 4.63 km morning run in Honolulu from Waikiki toward Diamond Head, passing Mākālei and Lēʻahi Beach Parks (马卡雷、莱阿希海滩公园)" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/hawaii-diamond-head.jpg"><img src="/images/cities-on-foot/hawaii-diamond-head.jpg" alt="Route map of a 4.63 km morning run in Honolulu from Waikiki toward Diamond Head, passing Mākālei and Lēʻahi Beach Parks (马卡雷、莱阿希海滩公园)" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-- Seoul: [Looping around Yeouido on foot](https://www.strava.com/activities/19732140447) showed me how seamlessly Seoul pairs its well-built Han River running and cycling paths with Yeouido Park—a small Central Park-like green space embedded in the CBD.
+In Seoul, [looping around Yeouido on foot](https://www.strava.com/activities/19732140447) showed me how seamlessly Seoul pairs its well-built Han River running and cycling paths with Yeouido Park—a small Central Park-like green space embedded in the CBD.
 
-  <a href="/images/cities-on-foot/seoul-yeouido.jpg"><img src="/images/cities-on-foot/seoul-yeouido.jpg" alt="Route map of a 5.24 km loop around Yeouido, Seoul, beside the Han River and Yeouido Park" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/seoul-yeouido.jpg"><img src="/images/cities-on-foot/seoul-yeouido.jpg" alt="Route map of a 5.24 km loop around Yeouido, Seoul, beside the Han River and Yeouido Park" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-- Hangzhou: Nine years after graduating from ZJU, I revisited this beautiful city and wandered around West Lake with my family. Walking a big loop on the lake’s west side—[north along Yanggong Causeway](https://www.strava.com/activities/16953327661) and [back via Su Causeway](https://www.strava.com/activities/16953327374)—showed me the sharp contrast between quiet and lively.
+In Hangzhou, nine years after graduating from ZJU, I revisited this beautiful city and wandered around West Lake with my family. Walking a big loop on the lake’s west side—[north along Yanggong Causeway](https://www.strava.com/activities/16953327661) and [back via Su Causeway](https://www.strava.com/activities/16953327374)—showed me the sharp contrast between quiet and lively.
 
-  <a href="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg" alt="Route map of a 7.93 km walk north along Yanggong Causeway on the west side of West Lake, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-yanggong-causeway.jpg" alt="Route map of a 7.93 km walk north along Yanggong Causeway on the west side of West Lake, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
-  <a href="/images/cities-on-foot/hangzhou-su-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-su-causeway.jpg" alt="Route map of a 3.94 km walk back south across West Lake via Su Causeway, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a href="/images/cities-on-foot/hangzhou-su-causeway.jpg"><img src="/images/cities-on-foot/hangzhou-su-causeway.jpg" alt="Route map of a 3.94 km walk back south across West Lake via Su Causeway, Hangzhou" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 ## Earning Your Appetite
 
