@@ -35,7 +35,7 @@ Another time in Tokyo, on [December 15, 2023—an absurdly warm winter night](ht
 <a href="/images/cities-on-foot/tokyo-yamanote-night.jpg"><img src="/images/cities-on-foot/tokyo-yamanote-night.jpg" alt="Route map of a 6.01 km night run in Tokyo from Ebisu north along the Yamanote Line toward Shibuya and back" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 <a href="/images/cities-on-foot/tokyo-night-temperature.jpg"><img src="/images/cities-on-foot/tokyo-night-temperature.jpg" alt="Weather app screenshot from the night of December 15, 2023 in Shibuya: 18°C at 22:33, rising to 20°C by 3 AM, with the hourly temperatures highlighted" width="1800" height="1296" loading="lazy" decoding="async"></a>
-<p class="caption">10:33 PM, December 15. It was 18°C and the hourly forecast kept climbing instead of dropping.</p>
+<p class="caption">Screenshot I took mid-run at 10:33 PM on December 15: 18°C and still climbing, not dropping.</p>
 
 In Hawaii, [this run](https://www.strava.com/activities/14583822282) made me realize just how close Diamond Head actually is to Waikiki (less than 5 km round-trip to the base of the crater). Along the way, I passed small oceanfront parks filled with morning yoga groups and found a narrow seaside path connecting Makalei and Leahi Beach Parks.
 
