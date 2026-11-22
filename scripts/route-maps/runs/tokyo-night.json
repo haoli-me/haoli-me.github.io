@@ -1,0 +1,72 @@
+{
+ "name": "tokyo-night",
+ "routeUrl": "/out/tokyo-night-latlng.json",
+ "totalKm": 6.01,
+ "stationSuffix": "駅",
+ "pois": [
+  {
+   "en": "JR Yamanote Line",
+   "zh": "山手線",
+   "at": [
+    545,
+    292
+   ],
+   "kind": "rail",
+   "rot": 56
+  },
+  {
+   "en": "Ebisu Station",
+   "zh": "恵比寿駅",
+   "ll": [
+    139.7102,
+    35.6464
+   ],
+   "a": "left"
+  },
+  {
+   "en": "Shibuya Station",
+   "zh": "渋谷駅",
+   "ll": [
+    139.70251,
+    35.65842
+   ],
+   "a": "right"
+  },
+  {
+   "en": "Yebisu Garden Place",
+   "zh": "恵比寿ガーデンプレイス",
+   "ll": [
+    139.71355,
+    35.64204
+   ],
+   "a": "right"
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 185,
+  "bottom": 100,
+  "left": 240,
+  "right": 240
+ },
+ "insetCenter": [
+  139.74,
+  35.7
+ ],
+ "insetZoom": 8.9,
+ "card": {
+  "en": "Tokyo",
+  "zh": "東京",
+  "note": "Night run along the Yamanote Line 山手線",
+  "date": "Friday, December 15, 2023 · 10:39 PM",
+  "stats": "6.01 km  ·  30:31  ·  5:05 /km"
+ },
+ "hidePlaceRegex": "chome|丁目",
+ "hidePlaces": [
+  "Daikanyamacho",
+  "Ebisu-Minami"
+ ],
+ "insetKeep": [
+  "Tokyo"
+ ]
+}

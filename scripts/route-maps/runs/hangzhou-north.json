@@ -1,0 +1,93 @@
+{
+ "name": "hangzhou-north",
+ "routeUrl": "/out/hangzhou-north-latlng.json",
+ "totalKm": 7.93,
+ "stationSuffix": "",
+ "pois": [
+  {
+   "en": "West Lake",
+   "zh": "西湖",
+   "ll": [
+    120.1431,
+    30.246
+   ],
+   "kind": "water"
+  },
+  {
+   "en": "Su Causeway",
+   "zh": "苏堤",
+   "at": [
+    525,
+    333
+   ],
+   "a": "left",
+   "nodot": true
+  },
+  {
+   "en": "Yanggong Causeway",
+   "zh": "杨公堤",
+   "at": [
+    422,
+    294
+   ],
+   "a": "right",
+   "nodot": true
+  },
+  {
+   "en": "Xiaoyingzhou",
+   "zh": "小瀛洲",
+   "ll": [
+    120.140263,
+    30.241218
+   ]
+  },
+  {
+   "en": "Quyuan Fenghe",
+   "zh": "曲院风荷",
+   "ll": [
+    120.128676,
+    30.252165
+   ],
+   "a": "right"
+  },
+  {
+   "en": "Leifeng Pagoda",
+   "zh": "雷峰塔",
+   "ll": [
+    120.145012,
+    30.233883
+   ]
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 140,
+  "bottom": 110,
+  "left": 320,
+  "right": 320
+ },
+ "insetCenter": [
+  120.2,
+  30.3
+ ],
+ "insetZoom": 8.0,
+ "card": {
+  "en": "Hangzhou",
+  "zh": "杭州",
+  "note": "North along Yanggong Causeway 杨公堤",
+  "date": "Friday, January 2, 2026 · 11:37 AM",
+  "stats": "7.93 km  ·  2:00:58  ·  15:14 /km"
+ },
+ "se": {
+  "f": {
+   "a": "left",
+   "off": [
+    1.1,
+    0
+   ]
+  }
+ },
+ "insetKeep": [
+  "Hangzhou"
+ ]
+}

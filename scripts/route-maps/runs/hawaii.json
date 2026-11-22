@@ -1,0 +1,107 @@
+{
+ "name": "hawaii",
+ "routeUrl": "/out/hawaii-latlng.json",
+ "totalKm": 4.63,
+ "stationSuffix": "",
+ "pois": [
+  {
+   "en": "Waikīkī Beach",
+   "zh": "威基基海滩",
+   "ll": [
+    -157.8234,
+    21.2742
+   ],
+   "a": "right"
+  },
+  {
+   "en": "Kapiolani Park",
+   "zh": "卡皮奥拉尼公园",
+   "ll": [
+    -157.81915,
+    21.265352
+   ]
+  },
+  {
+   "en": "Diamond Head (Lēʻahi)",
+   "zh": "钻石头山",
+   "ll": [
+    -157.81167,
+    21.259751
+   ]
+  },
+  {
+   "en": "Mākālei Beach Park",
+   "zh": "马卡雷海滩公园",
+   "ll": [
+    -157.81696,
+    21.257716
+   ],
+   "a": "top-right"
+  },
+  {
+   "en": "Lēʻahi Beach Park",
+   "zh": "莱阿希海滩公园",
+   "ll": [
+    -157.81502,
+    21.256513
+   ],
+   "a": "top"
+  },
+  {
+   "en": "Honolulu Zoo",
+   "zh": "檀香山动物园",
+   "ll": [
+    -157.8189,
+    21.27116
+   ],
+   "a": "right"
+  },
+  {
+   "en": "Diamond Head Lighthouse",
+   "zh": "钻石头灯塔",
+   "ll": [
+    -157.8094,
+    21.25571
+   ],
+   "a": "right"
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 175,
+  "bottom": 110,
+  "left": 170,
+  "right": 350
+ },
+ "insetCenter": [
+  -157.95,
+  21.47
+ ],
+ "insetZoom": 7.6,
+ "card": {
+  "en": "Honolulu",
+  "zh": "檀香山",
+  "note": "Waikiki 威基基 → Diamond Head 钻石头山",
+  "date": "Saturday, May 24, 2025 · 8:16 AM",
+  "stats": "4.63 km  ·  26:26  ·  5:43 /km"
+ },
+ "se": {
+  "f": {
+   "a": "right"
+  }
+ },
+ "zhNames": {},
+ "insetZh": {
+  "Honolulu": "檀香山",
+  "Wahiawā": "瓦希阿瓦",
+  "Waipahu": "怀帕胡",
+  "Kailua": "凯卢阿",
+  "Kāneʻohe": "卡内奥赫",
+  "Wahiawa": "瓦希阿瓦",
+  "Kaneohe": "卡内奥赫"
+ },
+ "insetKeep": [
+  "Honolulu"
+ ],
+ "kmMax": 3
+}

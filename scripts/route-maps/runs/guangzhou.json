@@ -1,0 +1,109 @@
+{
+ "name": "guangzhou",
+ "routeUrl": "/out/guangzhou-latlng.json",
+ "totalKm": 10.04,
+ "stationSuffix": "",
+ "pois": [
+  {
+   "en": "Yuancun",
+   "zh": "员村",
+   "ll": [
+    113.358076,
+    23.116968
+   ],
+   "a": "top",
+   "nodot": true
+  },
+  {
+   "en": "Liede",
+   "zh": "猎德",
+   "ll": [
+    113.3275,
+    23.1195
+   ],
+   "a": "bottom",
+   "nodot": true
+  },
+  {
+   "en": "Zhujiang New Town",
+   "zh": "珠江新城",
+   "ll": [
+    113.315802,
+    23.12198
+   ],
+   "a": "bottom",
+   "nodot": true
+  },
+  {
+   "en": "Ersha Island",
+   "zh": "二沙岛",
+   "ll": [
+    113.2975,
+    23.1128
+   ],
+   "a": "bottom",
+   "nodot": true
+  },
+  {
+   "en": "Pearl River",
+   "zh": "珠江",
+   "kind": "water",
+   "ll": [
+    113.34848,
+    23.109669
+   ]
+  },
+  {
+   "en": "Canton Tower",
+   "zh": "广州塔",
+   "ll": [
+    113.31914,
+    23.10901
+   ],
+   "a": "right"
+  },
+  {
+   "en": "Guangzhou Opera House",
+   "zh": "广州大剧院",
+   "ll": [
+    113.31674,
+    23.11776
+   ],
+   "a": "left",
+   "fixedA": true
+  },
+  {
+   "en": "Xinghai Concert Hall",
+   "zh": "星海音乐厅",
+   "ll": [
+    113.30004,
+    23.11043
+   ],
+   "a": "top",
+   "fixedA": true
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 150,
+  "bottom": 100,
+  "left": 170,
+  "right": 80
+ },
+ "insetCenter": [
+  113.35,
+  23.15
+ ],
+ "insetZoom": 8.4,
+ "card": {
+  "en": "Guangzhou",
+  "zh": "广州",
+  "note": "Pearl River run 珠江",
+  "date": "Wednesday, November 22, 2023 · 5:12 PM",
+  "stats": "10.04 km  ·  50:13  ·  5:00 /km"
+ },
+ "kmMax": 5,
+ "insetKeep": [
+  "Guangzhou"
+ ]
+}

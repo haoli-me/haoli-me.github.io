@@ -1,0 +1,79 @@
+{
+ "name": "tokyo",
+ "routeUrl": "/out/tokyo-latlng.json",
+ "totalKm": 10.01,
+ "stationSuffix": "駅",
+ "pois": [
+  {
+   "en": "Sunshine City",
+   "zh": "サンシャインシティ",
+   "ll": [
+    139.7195,
+    35.729
+   ]
+  },
+  {
+   "en": "Ikebukuro Station",
+   "zh": "池袋駅",
+   "ll": [
+    139.70962,
+    35.73073
+   ],
+   "a": "bottom-left",
+   "fixedA": true
+  },
+  {
+   "en": "Mejiro Station",
+   "zh": "目白駅",
+   "ll": [
+    139.70656,
+    35.72172
+   ],
+   "a": "right"
+  }
+ ],
+ "nudge": {
+  "Itabashi": {
+   "a": "right",
+   "off": [
+    -1.5,
+    0
+   ]
+  },
+  "Toshima": {
+   "a": "right",
+   "off": [
+    -0.9,
+    0.6
+   ]
+  },
+  "Kita": {
+   "a": "left",
+   "off": [
+    0.8,
+    0
+   ]
+  }
+ },
+ "pad": {
+  "top": 120,
+  "bottom": 90,
+  "left": 230,
+  "right": 230
+ },
+ "insetCenter": [
+  139.74,
+  35.7
+ ],
+ "insetZoom": 8.9,
+ "card": {
+  "en": "Tokyo",
+  "zh": "東京",
+  "note": "Morning run from Ikebukuro 池袋",
+  "date": "Wednesday, May 17, 2023 · 4:59 AM",
+  "stats": "10.01 km  ·  59:43  ·  5:58 /km"
+ },
+ "insetKeep": [
+  "Tokyo"
+ ]
+}

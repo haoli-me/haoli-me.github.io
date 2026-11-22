@@ -1,0 +1,107 @@
+{
+ "name": "seoul",
+ "routeUrl": "/out/seoul-latlng.json",
+ "totalKm": 5.24,
+ "stationSuffix": "",
+ "pois": [
+  {
+   "en": "Yeouido Park",
+   "zh": "汝矣岛公园",
+   "ll": [
+    126.92264,
+    37.52595
+   ],
+   "a": "right"
+  },
+  {
+   "en": "IFC Seoul",
+   "zh": "首尔国际金融中心",
+   "ll": [
+    126.925783,
+    37.525274
+   ]
+  },
+  {
+   "en": "National Assembly",
+   "zh": "国会议事堂",
+   "ll": [
+    126.917963,
+    37.528015
+   ]
+  },
+  {
+   "en": "Yeouido Hangang Park",
+   "zh": "汝矣岛汉江公园",
+   "at": [
+    575,
+    185
+   ],
+   "a": "bottom"
+  },
+  {
+   "en": "Han River",
+   "zh": "汉江",
+   "at": [
+    640,
+    100
+   ],
+   "kind": "water"
+  },
+  {
+   "en": "The Hyundai Seoul",
+   "zh": "首尔现代百货",
+   "ll": [
+    126.92841,
+    37.52596
+   ],
+   "a": "right"
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 130,
+  "bottom": 100,
+  "left": 260,
+  "right": 260
+ },
+ "insetCenter": [
+  127.0,
+  37.55
+ ],
+ "insetZoom": 8.2,
+ "card": {
+  "en": "Seoul",
+  "zh": "首尔",
+  "note": "Loop around Yeouido 汝矣岛",
+  "date": "Friday, August 14, 2026 · 8:19 AM",
+  "stats": "5.24 km  ·  28:05  ·  5:21 /km"
+ },
+ "hidePlaces": [
+  "Yeouido-dong"
+ ],
+ "zhNames": {
+  "Yeouinaru Station": "汝矣渡口站",
+  "Yeouido Station": "汝矣岛站",
+  "National Assembly Station": "国会议事堂站",
+  "Dangsan-dong": "堂山洞",
+  "Yeongdeungpo-dong 2-ga": "永登浦洞2街",
+  "Yeongdeungpo-dong 5-ga": "永登浦洞5街",
+  "Yeongdeungpo-dong 7-ga": "永登浦洞7街",
+  "Yeouido-dong": "汝矣岛洞"
+ },
+ "insetZh": {
+  "Seoul": "首尔",
+  "Goyang": "高阳",
+  "Incheon": "仁川",
+  "Seongnam": "城南",
+  "Ansan": "安山",
+  "Bucheon": "富川",
+  "Gimpo": "金浦",
+  "Suwon": "水原",
+  "Yongin": "龙仁",
+  "Uijeongbu": "议政府"
+ },
+ "insetKeep": [
+  "Seoul"
+ ]
+}

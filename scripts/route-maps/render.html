@@ -1,0 +1,302 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+  html,body{margin:0;background:#fff}
+  #map{position:absolute;left:0;top:0;width:1000px;height:720px}
+  #mini{position:absolute;left:0;top:760px;width:300px;height:210px}
+</style></head>
+<body>
+<div id="map"></div><div id="mini"></div>
+<script>
+window.addEventListener('error',e=>{document.title='ERR '+e.message});
+window.addEventListener('unhandledrejection',e=>{document.title='REJ '+(e.reason&&e.reason.message||e.reason)});
+
+// ---------- per-run config (loaded from runs/<run>.json) ----------
+let CFG;
+const RUN = new URLSearchParams(location.search).get('run') || 'tokyo';
+const ROUTE = '#fc4c02';                // Strava orange
+const P = {bg:'#f7f5f0',water:'#bddcf2',park:'#d9ecd1',wood:'#cfe6c7',res:'#f1eee7',
+           road:'#ffffff',majorCase:'#e4ded2',motoCase:'#eadbc2',moto:'#f7ecd9',path:'#d9d4c8',rail:'#cfcbe0',text:'#3c3a36'};
+
+// Japanese kanji -> Simplified Chinese for the common characters in place names
+const ZHMAP = {'駅':'站','豐':'丰','豊':'丰','橋':'桥','東':'东','園':'园','場':'场','島':'岛','馬':'马','関':'关','広':'广','経':'经','沢':'泽','巣':'巢','鴨':'鸭','駒':'驹','鷺':'鹭','線':'线','国':'国','國':'国','浜':'滨','窪':'洼','学':'学','學':'学','区':'区','區':'区','荘':'庄','寺':'寺','神':'神','谷':'谷'};
+const isLatin = s => !/[^\u0000-\u02FF\u1E00-\u1EFF\u2000-\u206F]/.test(s||'');
+const hasHan = s => /[一-鿿]/.test(s||'');
+const toZh = s => [...(s||'')].map(c=>ZHMAP[c]||c).join('');
+const clean = t => (t||'').replace(/\s*[（(][^)）]*[)）]/g,'').trim();
+const zhOf = p => clean(p.name||'');            // native (Japanese) name exactly as in the map data
+
+async function styled(keepPlaces = false) {
+  const st = await (await fetch('https://tiles.openfreemap.org/styles/positron')).json();
+  const set = (id, prop, val) => { const l = st.layers.find(x=>x.id===id); if (l) { (l.paint = l.paint||{})[prop] = val; } };
+  set('background','background-color',P.bg);
+  set('park','fill-color',P.park); set('landcover_wood','fill-color',P.wood); set('landcover_wood','fill-opacity',0.8);
+  set('landuse_residential','fill-color',P.res);
+  set('water','fill-color',P.water); set('waterway','line-color',P.water);
+  set('building','fill-color','#efeae0'); set('building','fill-opacity',0.55);
+  set('highway_minor','line-color',P.road); set('highway_path','line-color',P.path);
+  set('highway_major_casing','line-color',P.majorCase); set('highway_major_inner','line-color',P.road);
+  set('highway_major_subtle','line-color',P.majorCase);
+  set('highway_motorway_casing','line-color',P.motoCase); set('highway_motorway_inner','line-color',P.moto);
+  set('highway_motorway_subtle','line-color',P.motoCase);
+  set('highway_motorway_bridge_casing','line-color',P.motoCase); set('highway_motorway_bridge_inner','line-color',P.moto);
+  for (const id of ['railway','railway_transit','railway_service']) set(id,'line-color',P.rail);
+  for (const l of st.layers) if (l.type==='symbol') { l.paint=l.paint||{}; l.paint['text-color']=P.text; l.paint['text-halo-color']='rgba(255,255,255,0.92)'; l.paint['text-halo-width']=1.6; }
+  // we draw our own (consistently bilingual) place + station labels; hide the stock ones
+  for (const id of ['highway-name-path','highway-name-minor','highway-name-major','highway-shield-non-us','highway-shield-us-interstate','road_shield_us','waterway_line_label','water_name_point_label','water_name_line_label','label_other',...(keepPlaces ? [] : ['label_city','label_city_capital','label_town','label_village','label_state'])])
+    { const l = st.layers.find(x=>x.id===id); if (l) (l.layout=l.layout||{}).visibility='none'; }
+  return st;
+}
+
+const hav = (a,b) => { const R=6371.0088, r=Math.PI/180, dLa=(b[0]-a[0])*r, dLo=(b[1]-a[1])*r;
+  const h=Math.sin(dLa/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(h)); };
+
+function kmMarkers(route, totalKm) {
+  const cum=[0]; for (let i=1;i<route.length;i++) cum.push(cum[i-1]+hav(route[i-1],route[i]));
+  const k = totalKm / cum[cum.length-1];               // normalise to Strava's distance
+  const out=[]; let j=1;
+  for (let km=1; km<=totalKm-0.3; km++) {
+    while (j<cum.length-1 && cum[j]*k < km) j++;
+    const t=(km-cum[j-1]*k)/((cum[j]-cum[j-1])*k||1), a=route[j-1], b=route[j];
+    out.push({type:'Feature',properties:{n:String(km)},geometry:{type:'Point',coordinates:[a[1]+(b[1]-a[1])*t, a[0]+(b[0]-a[0])*t]}});
+  }
+  return out;
+}
+
+const OFFS={top:[0,0.9],bottom:[0,-0.9],left:[1,0],right:[-1,0],'top-left':[0.4,0.8],'top-right':[-0.4,0.8],'bottom-left':[0.4,-0.8],'bottom-right':[-0.4,-0.8]};
+const offOf = a => OFFS[a]||[0,0.9];
+const FONT_B=['Noto Sans Bold'], FONT_R=['Noto Sans Regular'];
+const twoLine = (enKey,zhKey)=>['case',['!=',['get',zhKey],''],['format',['get',enKey],{},'\n',{},['get',zhKey],{'font-scale':0.92}],['get',enKey]];
+
+function addRoute(map, route) {
+  const coords = route.map(([la,lo])=>[lo,la]);
+  const before = 'waterway_line_label';
+  const lc = {'line-cap':'round','line-join':'round'};
+  map.addSource('r',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:coords}}});
+  map.addLayer({id:'r-glow',type:'line',source:'r',layout:lc,paint:{'line-color':ROUTE,'line-width':18,'line-blur':12,'line-opacity':0.22}},before);
+  map.addLayer({id:'r-case',type:'line',source:'r',layout:lc,paint:{'line-color':'#ffffff','line-width':10.5}},before);
+  map.addLayer({id:'r-line',type:'line',source:'r',layout:lc,paint:{'line-color':ROUTE,'line-width':6.5}},before);
+  const lons = coords.map(c=>c[0]), lats = coords.map(c=>c[1]);
+  return {coords, bounds:[[Math.min(...lons),Math.min(...lats)],[Math.max(...lons),Math.max(...lats)]]};
+}
+
+
+// ================= unified label layout (collision-aware) =================
+const SZ = {stn:13, poi:14.5, se:14, plBig:16, plSmall:14, km:12};
+const meas = document.createElement('canvas').getContext('2d');
+function textSize(en, zh, size, bold, wrapEm) {
+  meas.font = `${bold?700:400} ${size}px Helvetica, Arial, sans-serif`;
+  let w1 = en ? meas.measureText(en).width*1.1 : 0;
+  meas.font = `${bold?700:400} ${size*0.92}px "PingFang SC","Hiragino Sans",sans-serif`;
+  let w2 = zh ? meas.measureText(zh).width*1.04 : 0;
+  let lines = (en?1:0)+(zh?1:0), w = Math.max(w1,w2);
+  if (wrapEm && w > wrapEm*size) { lines += Math.ceil(w/(wrapEm*size))-1; w = wrapEm*size; }
+  return {w: w+6, h: lines*size*1.22+4};
+}
+const normName = s => (s||'').toLowerCase().replace(/\bstation\b/g,'').replace(/\bcity\b/g,'').replace(/\bward\b/g,'').replace(/-ku\b/g,'').replace(/[^a-z一-鿿぀-ヿ가-힯]/g,'');
+function boxFor(p, a, size, tw, sc=1) {
+  const o = offOf(a).map(v=>v*sc), ax = /left/.test(a)?0:/right/.test(a)?1:0.5, ay = /top/.test(a)?0:/bottom/.test(a)?1:0.5;
+  const x0 = p.x + o[0]*size - ax*tw.w, y0 = p.y + o[1]*size - ay*tw.h;
+  return [x0, y0, x0+tw.w, y0+tw.h];
+}
+const hit = (A,B,pad=0) => A[0]<B[2]+pad && A[2]>B[0]-pad && A[1]<B[3]+pad && A[3]>B[1]-pad;
+function overlayRects(kmPxCss) {
+  return [[0,0,358,CFG.card.note?142:124],[748,0,1000,184],[0,716-44,16+kmPxCss+50,720],[1000-16-380,716-34,1000,720]];
+}
+function layoutLabels(map, route, kmFeatures, found, meta) {
+  const dense = [];
+  const pts = route.map(([la,lo])=>map.project([lo,la]));
+  for (let i=0;i<pts.length;i++){ dense.push(pts[i]); if(i){ const d=Math.hypot(pts[i].x-pts[i-1].x,pts[i].y-pts[i-1].y); for(let k=1;k<d/4;k++) dense.push({x:pts[i-1].x+(pts[i].x-pts[i-1].x)*k*4/d, y:pts[i-1].y+(pts[i].y-pts[i-1].y)*k*4/d}); } }
+  const routeHits = box => { let n=0; for (const q of dense) if (q.x>box[0]-5&&q.x<box[2]+5&&q.y>box[1]-5&&q.y<box[3]+5) n++; return n; };
+  const mpp = 40075016.686*Math.cos(window.__lat*Math.PI/180)/(512*Math.pow(2,window.__zoom));
+  const fixed = overlayRects(1000/mpp);
+  const EDGE = [10,10,990,710];
+  const inFrame = bx => bx[0]>=EDGE[0]&&bx[1]>=EDGE[1]&&bx[2]<=EDGE[2]&&bx[3]<=EDGE[3];
+  // markers (km dots, start/finish dots) are obstacles; thin out crowded km markers
+  const a = route[0], bb = route[route.length-1];
+  const se = [map.project([a[1],a[0]]), map.project([bb[1],bb[0]])];
+  const seBoxes = se.map(p=>[p.x-13,p.y-13,p.x+13,p.y+13]);
+  const km = []; const kmBoxes = [];
+  for (const f of kmFeatures) { const p = map.project(f.geometry.coordinates); const bx=[p.x-13,p.y-13,p.x+13,p.y+13];
+    if (CFG.kmMax && +f.properties.n > CFG.kmMax) continue;
+    if (seBoxes.some(s=>hit(bx,s,6)) || kmBoxes.some(k=>hit(bx,k,4))) continue;
+    if (!inFrame(bx) || fixed.some(r=>hit(bx,r))) continue;
+    km.push(f); kmBoxes.push(bx); }
+  const placed = [...se.map(p=>[p.x-10,p.y-10,p.x+10,p.y+10]), ...kmBoxes];
+  const out = {poi:[], stn:[], pl:[], se:[], km, warn:[]};
+  const tryPlace = (label, cands, size, bold, wrapEm, mandatory) => {
+    const tw = textSize(label.en, label.zh, size, bold, wrapEm); let best=null;
+    for (const cd of cands) {
+      const [an, sc] = Array.isArray(cd) ? cd : [cd, 1];
+      const bx = boxFor(label.p, an, size, tw, sc);
+      const why = !inFrame(bx) ? 'frame' : fixed.some(r=>hit(bx,r)) ? 'overlay' : placed.some(r=>hit(bx,r,3)) ? 'label '+JSON.stringify(placed.find(r=>hit(bx,r,3)).map(Math.round))+' me '+JSON.stringify(bx.map(Math.round)) : '';
+      if (why) { (window.__dbg=window.__dbg||[]).push(label.en+' '+an+' x'+sc+' '+why); continue; }
+      const rh = routeHits(bx);
+      if (rh===0) { best={an,sc,bx,rh}; break; }
+      (window.__dbg=window.__dbg||[]).push(label.en+' '+an+' x'+sc+' route'+rh);
+      if (mandatory && (!best || rh < best.rh)) best={an,sc,bx,rh};
+    }
+    if (best) placed.push(best.bx);
+    return best;
+  };
+  const ALL = ['top','bottom','left','right','top-left','top-right','bottom-left','bottom-right'];
+  const seen = new Set();
+  const norm = x => normName(x);
+  // 1. hand-labelled landmarks
+  const pois = CFG.pois.map(p => ({...p, ll: p.at ? map.unproject(p.at).toArray() : p.ll}));
+  for (const p of pois) { seen.add(norm(p.en)); }
+  for (const p of pois) {
+    const q = map.project(p.ll);
+    if (p.kind==='water' || p.kind==='rail') { out.poi.push({...p, a:'center', off:[0,0], q}); continue; }
+    const bx0 = [q.x-8,q.y-8,q.x+8,q.y+8];
+    if (!inFrame(bx0) || fixed.some(r=>hit(bx0,r))) { out.warn.push('poi off-frame: '+p.en); continue; }
+    const cands = [p.a||'top', ...ALL.filter(x=>x!==(p.a||'top'))];
+    const r = tryPlace({p:q,en:p.en,zh:p.zh}, p.fixedA ? [p.a] : cands, SZ.poi, true, 0, true);
+    if (!r) { out.warn.push('poi forced: '+p.en); const a0=p.a||'top'; out.poi.push({...p, a:a0, off:offOf(a0), q}); placed.push([q.x-8,q.y-8,q.x+8,q.y+8]); continue; }
+    if (r.rh) out.warn.push('poi on route: '+p.en+' ('+r.an+')');
+    out.poi.push({...p, a:r.an, off:offOf(r.an), q}); placed.push([q.x-8,q.y-8,q.x+8,q.y+8]);
+  }
+  // 2. start / finish labels
+  const merged = hav(route[0], route[route.length-1]) < 0.13;
+  const sl = [{k:'s',t:merged?'Start / Finish':'Start',z:merged?'起点 / 终点':'起点',p:se[0]}, ...(merged?[]:[{k:'f',t:'Finish',z:'终点',p:se[1]}])];
+  for (const l of sl) {
+    const pref = (CFG.se&&CFG.se[l.k]&&CFG.se[l.k].a) || (l.k==='s'?'left':'top');
+    const tw0 = {en:l.t, zh:l.z};
+    const base = [pref, ...ALL.filter(x=>x!==pref)];
+    const cands = [...base.map(a=>[a,1]), ...base.map(a=>[a,1.7]), ...base.map(a=>[a,2.5])];
+    const r = tryPlace({p:l.p,en:l.t,zh:l.z}, cands, SZ.se, true, 0, true);
+    if (r) { out.se.push({k:l.k,t:l.t+'\n'+l.z,a:r.an,off:offOf(r.an).map(v=>v*r.sc)}); if (r.rh) out.warn.push('se on route: '+l.k); }
+    else out.warn.push('se unplaced '+l.k);
+  }
+  // 3. places (big first), 4. stations
+  const plList = found.pl.slice().sort((x,y)=>({city:0,suburb:1,city_district:1,quarter:2}[x.properties.c]??3)-({city:0,suburb:1,city_district:1,quarter:2}[y.properties.c]??3) || x.properties.rank-y.properties.rank);
+  const stList = found.st.slice().sort((x,y)=>x.properties.rank-y.properties.rank);
+  const take = (f, kind) => {
+    const p=f.properties, n=norm(p.en||p.zh); if (!n || seen.has(n)) return;
+    if ((p.en||'').length>34) return;
+    const q = map.project(f.geometry.coordinates);
+    let size, bold=false, wrap=0, cands;
+    if (kind==='stn') { size=SZ.stn; cands=['left','right','top','bottom']; }
+    else { size = (p.c==='city'||p.c==='suburb'||p.c==='city_district')?SZ.plBig:SZ.plSmall; wrap=10; const nu=(CFG.nudge||{})[p.en]; cands = nu?[nu.a]:['center']; }
+    const bx0 = [q.x-7,q.y-7,q.x+7,q.y+7];
+    if (kind==='stn' && (!inFrame(bx0) || fixed.some(r=>hit(bx0,r,2)) || kmBoxes.some(r=>hit(bx0,r,2)) || seBoxes.some(r=>hit(bx0,r,2)) || routeHits(bx0))) return;
+    const r = tryPlace({p:q,en:p.en,zh:p.zh}, cands, size, bold, wrap, false);
+    if (!r) return; seen.add(n);
+    const prop = {en:p.en,zh:p.zh,a:r.an,off:offOf(r.an),c:p.c||'',size};
+    (kind==='stn'?out.stn:out.pl).push({type:'Feature',properties:prop,geometry:f.geometry});
+    if (kind==='stn') placed.push([q.x-7,q.y-7,q.x+7,q.y+7]);
+  };
+  plList.forEach(f=>take(f,'pl')); stList.forEach(f=>take(f,'stn'));
+  return out;
+}
+
+function collect(map, route) {
+  const b = map.getBounds(), seen = new Set(), st = [], pl = [];
+  const inb = f => b.contains(f.geometry.coordinates);
+  for (const f of map.querySourceFeatures('openmaptiles',{sourceLayer:'poi',filter:['all',['==',['get','class'],'railway'],['in',['get','subclass'],['literal',['station','subway']]]]})) {
+    if (!inb(f)) continue; const p = f.properties; const key = 's'+(p['name:latin']||p['name:en']||p.name||'');
+    if (!p.name || seen.has(key)) continue; seen.add(key);
+    let en = p['name:en']||p['name_en']||p['name:latin']||''; if (!isLatin(en)) en = ''; if (en && !/station$/i.test(en)) en += ' Station';
+    let zh = CFG.zhNames ? (CFG.zhNames[clean(en)]||'') : zhOf(p); if (!CFG.zhNames && zh && CFG.stationSuffix && !/[駅站역]$/.test(zh)) zh += CFG.stationSuffix;
+    let e2 = clean(en), z2 = zh; if (!e2 && z2) { e2 = z2; z2 = ''; }
+    if (CFG.zhNames && !e2) continue;
+    if ((CFG.hideStations||[]).includes(e2)) continue;
+    st.push({type:'Feature',properties:{en:e2, zh:z2, rank:p.rank||99},geometry:f.geometry});
+  }
+  const classes = ['city','suburb','quarter','neighbourhood','city_district','town','village'];
+  for (const f of map.querySourceFeatures('openmaptiles',{sourceLayer:'place'})) {
+    const p0 = f.properties;
+    if (!classes.includes(p0.class)) continue;
+    if (!inb(f)) continue; const p = f.properties; const key = 'p'+(p.name||p['name:latin']||'');
+    if (!p.name || seen.has(key)) continue; seen.add(key);
+    let en = clean(p['name:en']||p['name_en']||p['name:latin']||''); if (!isLatin(en)) en = ''; if ((CFG.hidePlaces||[]).includes(en)) continue; if (CFG.hidePlaceRegex && new RegExp(CFG.hidePlaceRegex).test((p.name||'')+' '+en)) continue;
+    let zh0 = CFG.zhNames ? (CFG.zhNames[en]||'') : zhOf(p), en0 = en; if (!en0 && zh0) { en0 = zh0; zh0 = ''; }
+    if (CFG.zhNames && !en0) continue;
+    pl.push({type:'Feature',properties:{en:en0, zh:zh0, c:p.class, rank:p.rank||99},geometry:f.geometry});
+  }
+  return {st, pl};
+}
+
+function addStationIcon(map) {
+  const c = document.createElement('canvas'); c.width = c.height = 48; const g = c.getContext('2d');
+  g.beginPath(); g.arc(24,24,16,0,7); g.fillStyle='#fff'; g.fill(); g.lineWidth=6; g.strokeStyle='#0e7490'; g.stroke();
+  map.addImage('stn', g.getImageData(0,0,48,48), {pixelRatio:2});
+}
+const feat = (ll, props) => ({type:'Feature',properties:props,geometry:{type:'Point',coordinates:ll}});
+function addLabels(map, L, route) {
+  addStationIcon(map);
+  const first = 'r-glow';
+  const off = ['array','number',2,['get','off']];
+  const sizeExpr = ['get','size'];
+  map.addSource('stn',{type:'geojson',data:{type:'FeatureCollection',features:L.stn}});
+  map.addLayer({id:'stn-dot',type:'symbol',source:'stn',layout:{'icon-image':'stn','icon-size':0.5,'icon-allow-overlap':true}}, first);
+  map.addLayer({id:'stn-label',type:'symbol',source:'stn',layout:{'text-field':twoLine('en','zh'),'text-font':FONT_R,'text-size':SZ.stn,'text-anchor':['get','a'],'text-offset':off,'text-justify':'auto','text-allow-overlap':true,'text-max-width':40},
+    paint:{'text-color':'#0e7490','text-halo-color':'#fff','text-halo-width':2}}, first);
+  map.addSource('pl',{type:'geojson',data:{type:'FeatureCollection',features:L.pl}});
+  map.addLayer({id:'pl-label',type:'symbol',source:'pl',layout:{'text-field':twoLine('en','zh'),'text-font':FONT_R,'text-size':sizeExpr,'text-max-width':10,'text-allow-overlap':true,'text-anchor':['get','a'],'text-offset':off,'text-justify':'auto'},
+    paint:{'text-color':'#7a756b','text-halo-color':'rgba(255,255,255,0.95)','text-halo-width':2}}, first);
+  const water = L.poi.filter(p=>p.kind==='water'), rail = L.poi.filter(p=>p.kind==='rail'), land = L.poi.filter(p=>p.kind!=='water'&&p.kind!=='rail');
+  map.addSource('wat',{type:'geojson',data:{type:'FeatureCollection',features:water.map(p=>feat(p.ll,{en:p.en,zh:p.zh}))}});
+  map.addLayer({id:'wat-label',type:'symbol',source:'wat',layout:{'text-field':twoLine('en','zh'),'text-font':['Noto Sans Italic'],'text-size':17,'text-letter-spacing':0.12,'text-allow-overlap':true},paint:{'text-color':'#3b7fb8','text-halo-color':'rgba(255,255,255,0.55)','text-halo-width':1.5}});
+  map.addSource('rail',{type:'geojson',data:{type:'FeatureCollection',features:rail.map(p=>feat(p.ll,{en:p.en,zh:p.zh,rot:p.rot||0}))}});
+  map.addLayer({id:'rail-label',type:'symbol',source:'rail',layout:{'text-field':twoLine('en','zh'),'text-font':FONT_B,'text-size':15,'text-rotate':['get','rot'],'text-rotation-alignment':'map','text-pitch-alignment':'map','text-allow-overlap':true,'text-letter-spacing':0.06},paint:{'text-color':'#6b5fa0','text-halo-color':'#fff','text-halo-width':2.2}});
+  map.addSource('poi',{type:'geojson',data:{type:'FeatureCollection',features:land.map(p=>feat(p.ll,{en:p.en,zh:p.zh,a:p.a,off:p.off,nodot:!!p.nodot}))}});
+  map.addLayer({id:'poi-dot',type:'circle',source:'poi',filter:['!',['get','nodot']],paint:{'circle-radius':6,'circle-color':'#0e7490','circle-stroke-color':'#fff','circle-stroke-width':2.5}});
+  map.addLayer({id:'poi-label',type:'symbol',source:'poi',layout:{'text-field':twoLine('en','zh'),'text-font':FONT_B,'text-size':SZ.poi,'text-anchor':['get','a'],'text-offset':off,'text-max-width':30,'text-allow-overlap':true},paint:{'text-color':'#0e7490','text-halo-color':'#fff','text-halo-width':2.2}});
+  map.addSource('km',{type:'geojson',data:{type:'FeatureCollection',features:L.km}});
+  map.addLayer({id:'km-dot',type:'circle',source:'km',paint:{'circle-radius':10,'circle-color':'#fff','circle-stroke-color':ROUTE,'circle-stroke-width':2.5}});
+  map.addLayer({id:'km-num',type:'symbol',source:'km',layout:{'text-field':['get','n'],'text-font':FONT_B,'text-size':SZ.km,'text-allow-overlap':true},paint:{'text-color':'#c2410c'}});
+  const a = route[0], b = route[route.length-1];
+  const sf = L.se.map(s => feat(s.k==='s'?[a[1],a[0]]:[b[1],b[0]], s));
+  map.addSource('se',{type:'geojson',data:{type:'FeatureCollection',features:L.se.map(s=>feat(s.k==='s'?[a[1],a[0]]:[b[1],b[0]], s))}});
+  // dots for start/finish even if label unplaced
+  const dots = [feat([a[1],a[0]],{k:'s'}), ...(hav(a,b)<0.13?[]:[feat([b[1],b[0]],{k:'f'})])];
+  map.addSource('sed',{type:'geojson',data:{type:'FeatureCollection',features:dots}});
+  map.addLayer({id:'se-dot',type:'circle',source:'sed',paint:{'circle-radius':8.5,'circle-color':['match',['get','k'],'s','#16a34a','#111827'],'circle-stroke-color':'#fff','circle-stroke-width':3}});
+  map.addLayer({id:'se-label',type:'symbol',source:'se',layout:{'text-field':['get','t'],'text-font':FONT_B,'text-size':SZ.se,'text-anchor':['get','a'],'text-offset':off,'text-justify':'auto','text-max-width':30,'text-allow-overlap':true},
+    paint:{'text-color':['match',['get','k'],'s','#15803d','#111827'],'text-halo-color':'#fff','text-halo-width':2}});
+}
+
+function idle(map){ return new Promise(r=>map.once('idle',r)); }
+async function save(map, name) {
+  await idle(map);
+  const r = await fetch('/save/'+name, {method:'POST', body:map.getCanvas().toDataURL('image/png')});
+  return r.text();
+}
+
+(async () => {
+  CFG = await (await fetch('/runs/'+RUN+'.json')).json();
+  const [route, style] = await Promise.all([fetch(CFG.routeUrl).then(r=>r.json()), styled()]);
+  const map = new maplibregl.Map({container:'map', style, center:[139.705,35.737], zoom:14, attributionControl:false, interactive:false, preserveDrawingBuffer:true, pixelRatio:3, fadeDuration:0});
+  map.on('error',e=>{window.__err=(window.__err||[]).concat(String(e.error&&e.error.message||e.message)).slice(-5)});
+  map.on('load', async () => {
+    const {bounds} = addRoute(map, route);
+    map.fitBounds(bounds, {padding:CFG.pad, duration:0});
+    window.__zoom = map.getZoom(); window.__lat = map.getCenter().lat;
+    await idle(map);                                   // tiles for this view are now loaded
+    const found = collect(map, route);
+    const L = layoutLabels(map, route, kmMarkers(route, CFG.totalKm), found);
+    window.__counts = {stations:L.stn.length, places:L.pl.length, pois:L.poi.length, warn:L.warn};
+    addLabels(map, L, route);
+    const r1 = await save(map, CFG.name+'-map.png');
+    const miniStyle = await styled(true);
+    if (CFG.insetZh) { const N=['coalesce',['get','name:en'],['get','name_en'],['get','name:latin'],['get','name']]; const m=['match',N]; for (const [k,v] of Object.entries(CFG.insetZh)) m.push(k,v); m.push('');
+      for (const l of miniStyle.layers) if (l.type==='symbol' && l['source-layer']==='place') (l.layout=l.layout||{})['text-field']=['format',N,{},'\n',{},m,{'font-scale':0.9}]; }
+    if (CFG.insetKeep) { const N2=['coalesce',['get','name:en'],['get','name_en'],['get','name:latin'],['get','name']]; const f=['in',N2,['literal',CFG.insetKeep]];
+      for (const l of miniStyle.layers) if (l.type==='symbol' && l['source-layer']==='place') l.filter = l.filter ? ['all', l.filter, f] : f; }
+    const mini = new maplibregl.Map({container:'mini', style:miniStyle, center:CFG.insetCenter, zoom:CFG.insetZoom, attributionControl:false, interactive:false, preserveDrawingBuffer:true, pixelRatio:3, fadeDuration:0});
+    mini.on('load', async () => {
+      for (const id of ['label_other']) {}                // (stock labels already hidden in styled())
+      mini.addSource('p',{type:'geojson',data:{type:'Feature',geometry:{type:'Point',coordinates:[route[Math.floor(route.length/2)][1],route[Math.floor(route.length/2)][0]]}}});
+      mini.addLayer({id:'p-halo',type:'circle',source:'p',paint:{'circle-radius':16,'circle-color':ROUTE,'circle-opacity':0.25}});
+      mini.addLayer({id:'p-dot',type:'circle',source:'p',paint:{'circle-radius':6,'circle-color':ROUTE,'circle-stroke-color':'#fff','circle-stroke-width':2.5}});
+      const r2 = await save(mini, CFG.name+'-inset.png');
+      await fetch('/save/'+CFG.name+'-meta.json',{method:'POST',body:JSON.stringify({zoom:window.__zoom,lat:window.__lat,counts:window.__counts})});
+      document.title = 'saved '+r1+' | '+r2+' | '+JSON.stringify(window.__counts);
+    });
+  });
+})();
+</script>
+</body></html>

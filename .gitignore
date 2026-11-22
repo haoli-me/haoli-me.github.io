@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# route-map renderer scratch output (tracks, renders)
+scripts/route-maps/out/

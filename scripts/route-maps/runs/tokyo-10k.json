@@ -1,0 +1,92 @@
+{
+ "name": "tokyo-10k",
+ "routeUrl": "/out/tokyo-10k-latlng.json",
+ "totalKm": 9.99,
+ "stationSuffix": "駅",
+ "pois": [
+  {
+   "en": "Ebisu Station",
+   "zh": "恵比寿駅",
+   "ll": [
+    139.7102,
+    35.6464
+   ],
+   "a": "top"
+  },
+  {
+   "en": "Shibuya Station",
+   "zh": "渋谷駅",
+   "ll": [
+    139.70251,
+    35.65842
+   ],
+   "a": "top"
+  },
+  {
+   "en": "Omotesando Station",
+   "zh": "表参道駅",
+   "ll": [
+    139.7129,
+    35.6658
+   ],
+   "a": "top"
+  },
+  {
+   "en": "Meiji Jingu Gaien (ginkgo avenue)",
+   "zh": "明治神宮外苑 イチョウ並木",
+   "a": "right",
+   "at": [
+    492,
+    178
+   ],
+   "nodot": true
+  },
+  {
+   "en": "Minami-Aoyama",
+   "zh": "南青山",
+   "a": "left",
+   "nodot": true,
+   "at": [
+    597,
+    272
+   ],
+   "fixedA": true
+  },
+  {
+   "en": "Hiroo Station",
+   "zh": "広尾駅",
+   "ll": [
+    139.72256,
+    35.65073
+   ],
+   "a": "left"
+  }
+ ],
+ "nudge": {},
+ "pad": {
+  "top": 130,
+  "bottom": 100,
+  "left": 240,
+  "right": 240
+ },
+ "insetCenter": [
+  139.74,
+  35.7
+ ],
+ "insetZoom": 8.9,
+ "card": {
+  "en": "Tokyo",
+  "zh": "東京",
+  "note": "Ebisu 恵比寿 → Hiroo 広尾",
+  "date": "Tuesday, December 5, 2023 · 4:11 PM",
+  "stats": "9.99 km  ·  50:03  ·  5:00 /km"
+ },
+ "insetKeep": [
+  "Tokyo"
+ ],
+ "se": {
+  "f": {
+   "a": "bottom-right"
+  }
+ }
+}
