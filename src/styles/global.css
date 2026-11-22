@@ -102,3 +102,4 @@ footer.site a:hover { color: var(--fg); }
 header.site nav a { padding: 0.75rem 0.2rem; margin: -0.75rem 0; }
 footer.site a { padding: 0.7rem 0; margin: -0.7rem 0; }
 
+.prose .caption { margin: -0.9rem 0 1.5rem; font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
