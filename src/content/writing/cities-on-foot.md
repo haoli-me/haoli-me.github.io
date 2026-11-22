@@ -28,7 +28,7 @@ That sensory immersion creates room for serendipity that you just can’t plan o
 
 In Tokyo, on [a morning run starting out from Ikebukuro](https://www.strava.com/activities/9084302340), I picked a random direction and stumbled into Mejiro. Just a short jog from Ikebukuro’s neon and station crowds, Mejiro felt like another world—narrow streets lined with low-rise houses, potted plants by the front doors, and quiet neighborhood alleys.
 
-<a href="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg"><img src="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg" alt="Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked" width="1800" height="1296" loading="lazy" decoding="async"></a>
+<a id="ikebukuro-run" href="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg"><img src="/images/cities-on-foot/tokyo-ikebukuro-mejiro.jpg" alt="Route map of a 10.01 km morning run in Tokyo through Itabashi and Toshima, with Ikebukuro and Mejiro stations marked" width="1800" height="1296" loading="lazy" decoding="async"></a>
 
 Another time in Tokyo, on [December 15, 2023—an absurdly warm winter night](https://x.com/extremetemps/status/1735828300633903154?s=20)—I went for [a night run along the Yamanote Line](https://www.strava.com/activities/10384090145). December nights there usually sit around 5°C, but that night the temperature actually climbed as it got later, going from 18°C at 10 PM to 20°C by 3 AM. Running past glowing Christmas lights and holiday music in warm, summer-like air felt completely surreal.
 
@@ -59,6 +59,6 @@ Part of the joy of visiting any city is eating your way through it. When you onl
 
 Running is pure freedom, all I need is a pair of shoes. It can be at dawn before the city wakes up, on a restless summer night, or on an unhurried afternoon. There are no constraints of time or place: no right moment, no specific venue, no special gear needed. I can go from staring at a screen to out the door in two minutes, with no booking, no transit, and no plan.
 
-## My Favorite Hack: Turn Jet Lag Into Exploration Time
+## The 4 AM Jet-Lag Run
 
-Whenever I fly back to Asia from the US, jet lag wakes me up at an ungodly hour, like 4:00 AM, long before any shops, cafes, or attractions open. Instead of staring at the ceiling, I lace up my shoes and go for a run while the city is still asleep, then follow it up with a warm bath and a proper, unhurried local breakfast. At home, my morning routine is usually just two eggs and a coffee; on the road, a sunrise run lets me enjoy a full feast before the rest of the city even wakes up. It’s easily my favorite way to start a trip.
+Whenever I fly back to Asia from the US, jet lag wakes me up at an ungodly hour, like 4:00 AM, long before any shops, cafes, or attractions open. Instead of staring at the ceiling, I lace up my shoes and head out while the streets are still empty (that [4:59 AM Ikebukuro run](#ikebukuro-run) above was one of those mornings). Then it’s back for a hot shower and a slow local breakfast. At home, my morning routine is usually just two eggs and a coffee; on the road, a sunrise run lets me enjoy a full feast before the rest of the city even wakes up. It’s easily my favorite way to start a trip.
