@@ -66,6 +66,19 @@ h2 { font-size: 1.25rem; line-height: 1.4; margin: 2.5rem 0 0.5rem; }
 h3 { font-size: 1.05rem; margin: 2rem 0 0.25rem; }
 
 .meta { color: var(--muted); font-size: 0.875rem; }
+.lang-switch {
+  display: block;
+  margin: 0 0 1.5rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--fg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.lang-switch:hover { border-color: var(--muted); }
 
 .post-list { list-style: none; margin: 0; padding: 0; }
 .post-list li { padding: 0.9rem 0; }

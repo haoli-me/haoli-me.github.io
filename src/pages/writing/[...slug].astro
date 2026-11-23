@@ -21,25 +21,20 @@ const fmt = date.toLocaleDateString(lang.startsWith('zh') ? 'zh-CN' : 'en-US', {
 });
 const alternates = other ? [{ lang: other.data.lang, href: `/writing/${other.id}/` }] : [];
 // Label for the switch link, written in the language it switches to.
-const switchLabel = other?.data.lang.startsWith('zh') ? '中文' : 'English';
+const switchLabel = other?.data.lang.startsWith('zh') ? '阅读中文版 →' : 'Read in English →';
 ---
 
 <Base title={title} description={description} type="article" lang={lang} alternates={alternates}>
   <article>
     <h1>{title}</h1>
-    <p class="meta">
-      <time datetime={date.toISOString()}>{fmt}</time>
-      {
-        other && (
-          <>
-            {' · '}
-            <a href={`/writing/${other.id}/`} lang={other.data.lang} hreflang={other.data.lang}>
-              {switchLabel}
-            </a>
-          </>
-        )
-      }
-    </p>
+    <p class="meta"><time datetime={date.toISOString()}>{fmt}</time></p>
+    {
+      other && (
+        <a class="lang-switch" href={`/writing/${other.id}/`} lang={other.data.lang} hreflang={other.data.lang}>
+          {switchLabel}
+        </a>
+      )
+    }
     <div class="prose">
       <Content />
     </div>
