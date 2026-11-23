@@ -2,6 +2,7 @@
 title: The Joy of Experiencing Cities on Foot
 description: Why a 10K run or walk is my favorite way to learn a city
 date: 2026-11-22
+translation: cities-on-foot-zh
 ---
 
 Whenever I land in a new city (or come back to an old one), my favorite way to get a feel for it isn’t by checking off an itinerary. It’s by lacing up my shoes and heading out the door on foot.

@@ -4,19 +4,42 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft);
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, other: posts.find((p) => p.id === post.data.translation) },
+  }));
 }
 
-const { post } = Astro.props;
+const { post, other } = Astro.props;
 const { Content } = await render(post);
 const { title, description, date, lang } = post.data;
-const fmt = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const fmt = date.toLocaleDateString(lang.startsWith('zh') ? 'zh-CN' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const alternates = other ? [{ lang: other.data.lang, href: `/writing/${other.id}/` }] : [];
+// Label for the switch link, written in the language it switches to.
+const switchLabel = other?.data.lang.startsWith('zh') ? '中文' : 'English';
 ---
 
-<Base title={title} description={description} type="article" lang={lang}>
+<Base title={title} description={description} type="article" lang={lang} alternates={alternates}>
   <article>
     <h1>{title}</h1>
-    <p class="meta"><time datetime={date.toISOString()}>{fmt}</time></p>
+    <p class="meta">
+      <time datetime={date.toISOString()}>{fmt}</time>
+      {
+        other && (
+          <>
+            {' · '}
+            <a href={`/writing/${other.id}/`} lang={other.data.lang} hreflang={other.data.lang}>
+              {switchLabel}
+            </a>
+          </>
+        )
+      }
+    </p>
     <div class="prose">
       <Content />
     </div>

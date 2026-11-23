@@ -11,6 +11,10 @@ const writing = defineCollection({
     date: z.coerce.date(),
     // Set to 'zh-CN' for Chinese posts so the right CJK glyphs are used.
     lang: z.string().default('en'),
+    // Slug of the same post in another language; shows a language switch link and hreflang tags.
+    translation: z.string().optional(),
+    // Reachable by URL and via the language switch, but left out of the writing list.
+    unlisted: z.boolean().default(false),
     // Drafts are hidden from the list and sitemap in production builds.
     draft: z.boolean().default(false),
   }),
